@@ -1,31 +1,19 @@
 package com.microservices.app.controller;
 
-import java.util.List;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
 
-import com.microservices.app.domain.Clients;
-import com.microservices.app.service.ClientService;
+import com.microservices.app.domain.Client;
 
-@RestController
+@Controller
 @RequestMapping(value = "/microservices")
-public class ClientController {
-	// TO runtime loggs
-	private static final Logger LETSLOGG = LoggerFactory.getLogger(ClientController.class);			
-
-    // Initializing Service
-	@Autowired
-	private ClientService service;					
- 
+public interface ClientController {
 	/*
 	 * Mappign url
 	 * statust for response
@@ -34,21 +22,22 @@ public class ClientController {
 	 */
 	@RequestMapping(value = "/createclient", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.OK)
-	public void createClient(@RequestBody Clients request) {
-		LETSLOGG.info("POST RUNNING");
-		service.createClient(request);
-	}
-
+	public void createClient(@RequestBody Client request); 
 	
-	/*  This operation will be return all the clients in mongo DOCS
+	/*  This operation will be return a client from mongo DOCS
 	 *  LOGG INFORMARION
 	 *	CALLING SERVICE
 	 */ 
-	@GetMapping("/getall")
+	@GetMapping(value ="/getclient")
 	@ResponseStatus(HttpStatus.OK) 					 
-	public List<Clients> getAllClients() {
-		LETSLOGG.info("GET OPERATION CONTROLLER RUNNING");
-		return service.getAllClients(); 			 
-	}
+	public String findClientByName(String name);
+	
+	/*  This operation will be return all the clients from mongo DOCS
+	 *  LOGG INFORMARION
+	 *	CALLING SERVICE
+	 */ 
+	@GetMapping(value ="/getallclients")
+	@ResponseStatus(HttpStatus.OK) 					 
+	public String getAllClients(Model model) ;
 
 }

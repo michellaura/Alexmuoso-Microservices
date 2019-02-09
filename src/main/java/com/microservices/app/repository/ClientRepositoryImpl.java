@@ -5,28 +5,25 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import com.microservices.app.model.ClientsModel;
+import com.microservices.app.model.ClientModel;
 
 @Repository
-public class ClientRepositoryImpl {
+public class ClientRepositoryImpl{
 
 	@Autowired
-	private ClientInterface repoMongoCrud;
+	private ClientRepositoryCrud mongoRepo;
 
-	/*
-	 * This Repository Method will go to the MOngo DB and take all the Clients in
-	 * Docs.
-	 */
-	public List<ClientsModel> getAllClients(){
-		List<ClientsModel> responseModel = new ArrayList<ClientsModel>() ;
-		responseModel = repoMongoCrud.findAll();
+	public List<ClientModel> getAllClients(){
+		List<ClientModel> responseModel = new ArrayList<ClientModel>() ;
+		responseModel = mongoRepo.findAll();
 		return responseModel;
 	}
-	/*
-	 * This Repository Method will go to the MOngo DB and insert Clients in
-	 * Docs.
-	 */
-	public void createClient(ClientsModel requestModel) {
-		repoMongoCrud.insert(requestModel);
+
+	public void createClient(ClientModel requestModel) {
+		mongoRepo.insert(requestModel);
+	}
+	
+	public ClientModel findClientByName(String name) {
+		return mongoRepo.findByName(name);
 	}
 }

@@ -7,10 +7,9 @@ import lombok.Data;
 
 @Data
 @Document
-public class ClientsModel {
+public class ClientModel {
 	
 	@Id
-	private String id;
 	private String name;
 	private String lastName;
 	private int age;

@@ -3,7 +3,7 @@ package com.microservices.app.domain;
 import lombok.Data;
 
 @Data
-public class Clients {
+public class Client {
 
 	private String name;
 	private String lastName;
