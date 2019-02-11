@@ -5,7 +5,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
 import com.microservices.app.model.ClientModel;
+import com.mongodb.MongoException;
 
 import lombok.extern.slf4j.Slf4j;
 @Slf4j
@@ -25,7 +27,14 @@ public class ClientRepositoryImpl{
 	}
 
 	public void createClient(ClientModel requestModel) {
-		mongoRepo.insert(requestModel);
+		
+		log.info("::POST:: REPO -> INSERT CLIENT DATA {}" , requestModel);
+		try {
+			mongoRepo.insert(requestModel);
+		}catch( MongoException e) {
+			log.info(e.getLocalizedMessage());
+			throw e;
+		}
 	}
 	
 	public ClientModel findClientByName(String name) {

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
+import org.thymeleaf.util.StringUtils;
 
 import com.microservices.app.domain.Client;
 import com.microservices.app.model.ClientModel;
@@ -23,7 +24,7 @@ public class Transform {
 			client.setName(x.getName());
 			client.setLastName(x.getLastName());
 			client.setAge(x.getAge());
-			client.setSex(x.getSex());
+			client.setGender(x.getGender());
 			response.add(client);});
 		log.info("::TRANSFORM::  SUCCESS TRANSFORM GET ALL CLIENTS");
 		return response;
@@ -32,10 +33,12 @@ public class Transform {
 	public ClientModel transformDoaminToModel(Client clientRequest){
 		
 		ClientModel requestModel = new ClientModel();
+		// ID
+		requestModel.setId(StringUtils.randomAlphanumeric(10));   
 		requestModel.setName(clientRequest.getName());
 		requestModel.setLastName(clientRequest.getLastName());
 		requestModel.setAge(clientRequest.getAge());
-		requestModel.setSex(clientRequest.getSex());
+		requestModel.setGender(clientRequest.getGender());
 		
 		return requestModel;
 	}

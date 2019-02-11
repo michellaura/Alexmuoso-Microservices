@@ -1,6 +1,8 @@
 package com.microservices.app.service;
 
+
 import java.util.List;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,8 +31,8 @@ public class ClientServiceImpl implements ClientService{
 	}
 
 	public void createClient(Client request) {
-		log.info("::POST CLIENT RUNNING::");
-		repo.createClient(transform.transformDoaminToModel(request));
+			log.info("::POST:: SERVICE -> CREATE CLIENT REQUEST " + request );
+			repo.createClient(transform.transformDoaminToModel(request));
 	}
 
 	@Override
@@ -41,7 +43,7 @@ public class ClientServiceImpl implements ClientService{
 		response.setName(responseModel.getName());
 		response.setLastName(responseModel.getLastName());
 		response.setAge(responseModel.getAge());
-		response.setSex(responseModel.getSex());
+		response.setGender(responseModel.getGender());
 		return response;
 	}
 

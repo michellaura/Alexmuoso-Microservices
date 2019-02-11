@@ -8,6 +8,6 @@ public class Client {
 	private String name;
 	private String lastName;
 	private int age;
-	private String sex;
+	private String gender;
 	
 }

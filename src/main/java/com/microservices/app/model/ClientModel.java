@@ -1,21 +1,19 @@
 package com.microservices.app.model;
 
-import java.util.UUID;
-
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.Data;
 
 @Data
-@Document
+@Document("Clients")
 public class ClientModel {
 	
 	@Id
-	private UUID _id;
+	private String id;
 	private String name;
 	private String lastName;
 	private int age;
-	private String sex;
+	private String gender;
 	
 }

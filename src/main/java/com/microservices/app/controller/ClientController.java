@@ -22,7 +22,7 @@ public interface ClientController {
 	 */
 	@RequestMapping(value = "/createclient", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.OK)
-	public void createClient(@RequestBody Client request); 
+	public String createClient(@RequestBody Client request); //RequestBody
 	
 	/*  This operation will be return a client from mongo DOCS
 	 *  LOGG INFORMARION
@@ -38,11 +38,13 @@ public interface ClientController {
 	 */ 
 	@GetMapping(value ="/getallclients")
 	@ResponseStatus(HttpStatus.OK) 					 
-	public String getAllClients(Model model) ;
+	public String getAllClients() ;
 
 	/*
-	 * Show view
+	 * Show views
 	 * */
 	@RequestMapping(value="/", method=RequestMethod.GET)
 	public String showMicroservices (Model model);
+	@RequestMapping(value="/showInsertClientView", method=RequestMethod.GET)
+	public String showInsertClientView(Model model);
 }

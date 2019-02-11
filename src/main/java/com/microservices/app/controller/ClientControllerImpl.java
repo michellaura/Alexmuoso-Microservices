@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.microservices.app.domain.Client;
 import com.microservices.app.service.ClientServiceImpl;
-
 import lombok.extern.slf4j.Slf4j;
 
 @Component
@@ -19,7 +18,19 @@ public class ClientControllerImpl implements ClientController {
 	@Autowired
 	private ClientServiceImpl service;
 
-	public String getAllClients(Model model) {
+	private Model model  = null;
+	
+	public String createClient(@RequestBody Client request) {
+		log.info("::POST RUNNING:: REQUEST " + request);
+		service.createClient(request);
+		// Front end
+		
+		model.addAttribute("message","THE CLIENT WAS CREATED");
+		return "createClient";
+
+	}
+
+	public String getAllClients() {
 		log.info("::GET OPERATION CONTROLLER RUNNING::");
 		List<Client> listClients = service.getAllClients();
 
@@ -30,20 +41,18 @@ public class ClientControllerImpl implements ClientController {
 		return "list";
 	}
 
-	public void createClient(@RequestBody Client request) {
-		log.info("::POST RUNNING::");
-		service.createClient(request);
-	}
-
-	@SuppressWarnings("null")
-	public String findClientByName(String name) {
+		public String findClientByName(String name) {
 		log.info("::GET OPERATION CONTROLLER RUNNING::");
 		Client response = service.findClientByName(name);
 
 		// Front-end
-		Model model = null;
-		model.addAttribute("client", response);
-		return "Microservices";
+		model.addAttribute("listClient", response);
+		return "list";
+	}
+
+	// FRON.END
+	public String showInsertClientView(Model model) {
+		return "createClient";
 	}
 
 	// FRON.END
