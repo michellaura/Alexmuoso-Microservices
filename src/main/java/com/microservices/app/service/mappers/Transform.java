@@ -8,11 +8,15 @@ import org.springframework.stereotype.Component;
 import com.microservices.app.domain.Client;
 import com.microservices.app.model.ClientModel;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Component
 public class Transform {
 
 	
 	public List<Client> transformClientModelToClientService(List<ClientModel> responseModel){
+		log.info("::TRANSFORM::  TRANSFORM GET ALL CLIENTS");
 		List<Client> response = new ArrayList<Client>();
 		responseModel.stream().forEach(x -> { 
 			Client client = new Client();
@@ -21,6 +25,7 @@ public class Transform {
 			client.setAge(x.getAge());
 			client.setSex(x.getSex());
 			response.add(client);});
+		log.info("::TRANSFORM::  SUCCESS TRANSFORM GET ALL CLIENTS");
 		return response;
 	}
 	

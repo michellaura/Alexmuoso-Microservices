@@ -20,20 +20,22 @@ public class ClientServiceImpl implements ClientService{
 	@Autowired Transform transform; 
 	
 	public List<Client> getAllClients() {
-		log.info("Service getAllClients Running ");
+		log.info("::SERVICE:: GET ALL CLIENTS RUNNING");
 		List<ClientModel> modelResponse  = repo.getAllClients();
+		log.info("::SERVICE:: TRANSFORM RESPONSE OF ALL CLIENTS");
 		List<Client> response = transform.transformClientModelToClientService(modelResponse);
+		log.info("::REPO:: RETRIEVING ALL CLIENTS");
 		return response ;
 	}
 
 	public void createClient(Client request) {
-		log.info("POST SERVICE RUNNING");
+		log.info("::POST CLIENT RUNNING::");
 		repo.createClient(transform.transformDoaminToModel(request));
 	}
 
 	@Override
 	public Client findClientByName(String name) {
-		log.info("POST SERVICE RUNNING");	
+		log.info("::GET CLIENT BY NAME RUNNING RUNNING::");	
 		ClientModel responseModel = repo.findClientByName(name);
 		Client response = new Client();
 		response.setName(responseModel.getName());

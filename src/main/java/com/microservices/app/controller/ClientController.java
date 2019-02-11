@@ -40,4 +40,9 @@ public interface ClientController {
 	@ResponseStatus(HttpStatus.OK) 					 
 	public String getAllClients(Model model) ;
 
+	/*
+	 * Show view
+	 * */
+	@RequestMapping(value="/", method=RequestMethod.GET)
+	public String showMicroservices (Model model);
 }
