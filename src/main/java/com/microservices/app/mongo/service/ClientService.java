@@ -1,8 +1,8 @@
-package com.microservices.app.service;
+package com.microservices.app.mongo.service;
 
 import java.util.List;
 
-import com.microservices.app.domain.Client;
+import com.microservices.app.mongo.domain.Client;
 
 public interface ClientService {
 	/*

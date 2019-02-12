@@ -1,4 +1,4 @@
-package com.microservices.app.service.mappers;
+package com.microservices.app.mongo.service.mappers;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,14 +6,14 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 import org.thymeleaf.util.StringUtils;
 
-import com.microservices.app.domain.Client;
-import com.microservices.app.model.ClientModel;
+import com.microservices.app.mongo.domain.Client;
+import com.microservices.app.mongo.model.ClientModel;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Component
-public class Transform {
+public class TransformResponse {
 
 	
 	public List<Client> transformClientModelToClientService(List<ClientModel> responseModel){
@@ -26,7 +26,7 @@ public class Transform {
 			client.setAge(x.getAge());
 			client.setGender(x.getGender());
 			response.add(client);});
-		log.info("::TRANSFORM::  SUCCESS TRANSFORM GET ALL CLIENTS");
+		log.info("::TRANSFORM::  SUCCESS TRANSFORM GET ALL CLIENTS" + response);
 		return response;
 	}
 	

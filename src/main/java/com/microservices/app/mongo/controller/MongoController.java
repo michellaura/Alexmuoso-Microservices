@@ -1,4 +1,4 @@
-package com.microservices.app.controller;
+package com.microservices.app.mongo.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -9,11 +9,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import com.microservices.app.domain.Client;
+import com.microservices.app.mongo.domain.Client;
 
 @Controller
-@RequestMapping(value = "/microservices")
-public interface ClientController {
+@RequestMapping(value = "/mongo")
+public interface MongoController {
+	
+	
+	/*  This operation will be return all the clients from mongo DOCS
+	 *  LOGG INFORMARION
+	 *	CALLING SERVICE
+	 */ 
+	@GetMapping(value ="/getallclients")
+	@ResponseStatus(HttpStatus.OK) 					 
+	public String getAllClients(Model model) ;
 	/*
 	 * Mappign url
 	 * statust for response
@@ -22,7 +31,7 @@ public interface ClientController {
 	 */
 	@RequestMapping(value = "/createclient", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.OK)
-	public String createClient(@RequestBody Client request); //RequestBody
+	public String createClient(@RequestBody Client request, Model model); //RequestBody
 	
 	/*  This operation will be return a client from mongo DOCS
 	 *  LOGG INFORMARION
@@ -30,21 +39,12 @@ public interface ClientController {
 	 */ 
 	@GetMapping(value ="/getclient")
 	@ResponseStatus(HttpStatus.OK) 					 
-	public String findClientByName(String name);
+	public String findClientByName(String name, Model model);
 	
-	/*  This operation will be return all the clients from mongo DOCS
-	 *  LOGG INFORMARION
-	 *	CALLING SERVICE
-	 */ 
-	@GetMapping(value ="/getallclients")
-	@ResponseStatus(HttpStatus.OK) 					 
-	public String getAllClients() ;
-
 	/*
-	 * Show views
+	 * FRONT END - VIEWS 
 	 * */
 	@RequestMapping(value="/", method=RequestMethod.GET)
-	public String showMicroservices (Model model);
-	@RequestMapping(value="/showInsertClientView", method=RequestMethod.GET)
-	public String showInsertClientView(Model model);
+	public String displayMongoView (Model model);
+
 }

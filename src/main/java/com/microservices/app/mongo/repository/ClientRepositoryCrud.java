@@ -1,10 +1,10 @@
-package com.microservices.app.repository;
+package com.microservices.app.mongo.repository;
 
 import java.util.UUID;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-import com.microservices.app.model.ClientModel;
+import com.microservices.app.mongo.model.ClientModel;
 
 public interface ClientRepositoryCrud extends MongoRepository<ClientModel, UUID>{
 	/*

@@ -1,4 +1,4 @@
-package com.microservices.app.service;
+package com.microservices.app.mongo.service;
 
 
 import java.util.List;
@@ -7,10 +7,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.microservices.app.domain.Client;
-import com.microservices.app.model.ClientModel;
-import com.microservices.app.repository.ClientRepositoryImpl;
-import com.microservices.app.service.mappers.Transform;
+import com.microservices.app.mongo.domain.Client;
+import com.microservices.app.mongo.model.ClientModel;
+import com.microservices.app.mongo.repository.ClientRepositoryImpl;
+import com.microservices.app.mongo.service.mappers.TransformResponse;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -19,14 +19,14 @@ import lombok.extern.slf4j.Slf4j;
 public class ClientServiceImpl implements ClientService{
 	
 	@Autowired ClientRepositoryImpl repo;
-	@Autowired Transform transform; 
+	@Autowired TransformResponse transform; 
 	
 	public List<Client> getAllClients() {
 		log.info("::SERVICE:: GET ALL CLIENTS RUNNING");
 		List<ClientModel> modelResponse  = repo.getAllClients();
 		log.info("::SERVICE:: TRANSFORM RESPONSE OF ALL CLIENTS");
 		List<Client> response = transform.transformClientModelToClientService(modelResponse);
-		log.info("::REPO:: RETRIEVING ALL CLIENTS");
+		log.info("::SERVICE:: RETRIEVING ALL CLIENTS" + response);
 		return response ;
 	}
 

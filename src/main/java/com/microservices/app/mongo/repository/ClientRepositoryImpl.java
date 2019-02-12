@@ -1,4 +1,4 @@
-package com.microservices.app.repository;
+package com.microservices.app.mongo.repository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.microservices.app.model.ClientModel;
+import com.microservices.app.mongo.model.ClientModel;
 import com.mongodb.MongoException;
 
 import lombok.extern.slf4j.Slf4j;
