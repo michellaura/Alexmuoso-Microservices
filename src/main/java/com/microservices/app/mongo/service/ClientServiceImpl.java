@@ -30,6 +30,7 @@ public class ClientServiceImpl implements ClientService{
 		return response ;
 	}
 
+	
 	public void createClient(Client request) {
 			log.info("::POST:: SERVICE -> CREATE CLIENT REQUEST " + request );
 			repo.createClient(transform.transformDoaminToModel(request));

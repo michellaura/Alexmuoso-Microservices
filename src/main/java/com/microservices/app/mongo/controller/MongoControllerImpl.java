@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.microservices.app.mongo.domain.Client;
 import com.microservices.app.mongo.service.ClientServiceImpl;
@@ -19,24 +21,24 @@ public class MongoControllerImpl implements MongoController {
 	@Autowired
 	private ClientServiceImpl service;
 
-
 	public String getAllClients(Model model) {
 		log.info("::GET OPERATION CONTROLLER RUNNING::");
 		List<Client> listClients = service.getAllClients();
-
+	
 		// Front-end part
 		model.addAttribute("response", listClients);
 		return "mongo_view";
 	}
 	
-	public String createClient(@RequestBody Client request,Model model) {
+	public ModelAndView createClient(@RequestBody Client request, BindingResult result) {
 		log.info("::POST RUNNING:: REQUEST " + request);
 		service.createClient(request);
 		
 		// Front end
-		model.addAttribute("message","THE CLIENT WAS CREATED");
-		return "mongo_view";
-
+		 ModelAndView model = new ModelAndView();
+	        model.addObject("client", request);
+	        model.setViewName(result.hasErrors() ? "mongo_view" : "mongo_view"); 
+       return model;
 	}
 
 	public String findClientByName(String name, Model model) {

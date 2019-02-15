@@ -18,6 +18,8 @@ public interface ClientService {
 	 */ 
 	public Client findClientByName(String name) ;
 
+	
+	
 	/*
 	 * Receive request client
 	 * map to model 

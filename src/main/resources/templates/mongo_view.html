@@ -62,5 +62,41 @@
 					<a href=""  style="text-decoration: none"   class="btn btn-primary btn-block">Delete Client</a>
 			</div>
 	</div>
+	<div class="row">
+		<div class="col-8 offset-1">
+			<form th:action="@{/mongo/createclient}" th:object="${client}" method="post">
+			    <fieldset>
+			        <legend>Datos del usuario</legend>
+			        <table>
+			            <tr>
+			                <td><label th:text="#{form.client.name}">Name: </label></td>
+			                <td><input type="text" th:field="*{name}" /></td>
+			            </tr>
+			            <tr>
+			                <td><label th:text="#{form.user.lastName}">Last Name: </label></td>
+			                <td><input type="text" th:field="*{lastName}" /></td>
+			            </tr>
+			            <tr>
+			                <td><label th:text="#{form.user.mail}">Mail: </label></td>
+			                <td><input type="text" th:field="*{mail}" /></td>
+			            </tr>
+			            <tr>
+			                <td><label th:text="#{form.user.age}">Age: </label></td>
+			                <td><input type="number" th:field="*{age}" /></td>
+			            </tr>
+			            <tr>
+			                <td><label th:text="#{form.user.sexo}">Gender: </label></td>
+			                <td><input type="checkbox" th:field="*{gender}" /></td>
+			            </tr>
+			            <tr>
+			                <td>
+			                    <button type="submit">Registrar...</button>
+			                </td>
+			            </tr>
+			        </table>
+			    </fieldset>
+			</form>
+		</div>
+	</div>
 </body>
 </html>
