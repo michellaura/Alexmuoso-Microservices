@@ -1,36 +1,36 @@
-package com.microservices.app.service.mappers;
+package com.microservices.app.mongo.service.mappers;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import com.microservices.app.domain.Clients;
-import com.microservices.app.model.ClientsModel;
+import com.microservices.app.mongo.domain.Client;
+import com.microservices.app.mongo.model.ClientDao;
 
 @Component
 public class Transform {
 
 	
-	public List<Clients> transformClientModelToClientService(List<ClientsModel> responseModel){
-		List<Clients> response = new ArrayList<Clients>();
+	public List<Client> transformClientModelToClientService(List<ClientDao> responseModel){
+		List<Client> response = new ArrayList<Client>();
 		responseModel.stream().forEach(x -> { 
-			Clients client = new Clients();
+			Client client = new Client();
 			client.setName(x.getName());
 			client.setLastName(x.getLastName());
 			client.setAge(x.getAge());
-			client.setSex(x.getSex());
+			client.setGender(x.getGender());
 			response.add(client);});
 		return response;
 	}
 	
-	public ClientsModel transformDoaminToModel(Clients clientRequest){
+	public ClientDao transformDoaminToModel(Client clientRequest){
 		
-		ClientsModel requestModel = new ClientsModel();
+		ClientDao requestModel = new ClientDao();
 		requestModel.setName(clientRequest.getName());
 		requestModel.setLastName(clientRequest.getLastName());
 		requestModel.setAge(clientRequest.getAge());
-		requestModel.setSex(clientRequest.getSex());
+		requestModel.setGender(clientRequest.getGender());
 		
 		return requestModel;
 	}

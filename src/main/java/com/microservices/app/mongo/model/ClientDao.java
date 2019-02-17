@@ -1,4 +1,4 @@
-package com.microservices.app.model;
+package com.microservices.app.mongo.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -6,14 +6,14 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import lombok.Data;
 
 @Data
-@Document
-public class ClientsModel {
+@Document("CLIENTS")
+public class ClientDao {
 	
 	@Id
 	private String id;
 	private String name;
 	private String lastName;
 	private int age;
-	private String sex;
+	private String gender;
 	
 }

@@ -1,13 +1,13 @@
-package com.microservices.app.domain;
+package com.microservices.app.mongo.domain;
 
 import lombok.Data;
 
 @Data
-public class Clients {
+public class Client {
 
 	private String name;
 	private String lastName;
 	private int age;
-	private String sex;
+	private String gender;
 	
 }
