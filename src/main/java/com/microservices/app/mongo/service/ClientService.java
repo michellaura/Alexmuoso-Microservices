@@ -9,4 +9,7 @@ public interface ClientService {
 	public List<Client> getAllClients() ;
 
 	public void createClient(Client request) ;
+	
+	public Client getByName(String name) throws  RuntimeException ;
+
 }
