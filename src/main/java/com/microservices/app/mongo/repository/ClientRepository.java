@@ -1,5 +1,6 @@
 package com.microservices.app.mongo.repository;
 
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
@@ -10,5 +11,5 @@ import com.microservices.app.mongo.model.ClientDao;
 @Repository
 public interface ClientRepository extends MongoRepository<ClientDao, UUID> {
 	
-	ClientDao findByName(String name) ;
+	List<ClientDao> findByName(String name) ;
 }

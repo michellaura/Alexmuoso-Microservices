@@ -10,6 +10,6 @@ public interface ClientService {
 
 	public void createClient(Client request) ;
 	
-	public Client getByName(String name) throws  RuntimeException ;
+	public List<Client>getAllClientsByName(String name) throws  RuntimeException ;
 
 }

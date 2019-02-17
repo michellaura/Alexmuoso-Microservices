@@ -34,7 +34,7 @@ public class ClientRepositoryImpl {
 		repoMongoCrud.insert(requestModel);
 	}
 
-	public ClientDao getByName(String name) {
+	public List<ClientDao> getAllClientsByName(String name) {
 		log.info("::GET getByName :: REPOSITORY  CALLING MONGO CLUSTER :::");
 		return clientRepository.findByName(name);
 	}

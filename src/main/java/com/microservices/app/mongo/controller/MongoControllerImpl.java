@@ -33,15 +33,15 @@ public class MongoControllerImpl implements MongoController {
 	}
 
 	@Override
-	public ResponseEntity<Object> getclientbyname(String name) {
+	public ResponseEntity<Object> getAllClientsByName(String name) {
 		StringBuffer exceptionMessage = new StringBuffer();
-		Client response;
+		List<Client>response;
 
 		validator.validateName(name, exceptionMessage);
 		if (exceptionMessage.length() == 0) {
 
 			try {
-				response = service.getByName(name);
+				response = service.getAllClientsByName(name);
 			} catch (RuntimeException e) {
 				log.info("GET  getclientbyname  EXCEPTION : " + e.getMessage());
 				return ResponseEntity.status(HttpStatus.OK).body(" NO DATA FOUND WITH NAME :  " + name);

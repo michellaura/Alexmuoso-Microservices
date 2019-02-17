@@ -46,17 +46,13 @@ public class ClientServiceImpl implements ClientService {
 	}
 
 	@Override
-	public Client getByName(String name) throws RuntimeException	{
+	public List<Client>getAllClientsByName(String name) throws RuntimeException	{
 			log.info("::GET getByName  SERVICE :: CALL REPO  ");
-			ClientDao daoResponse = repo.getByName(name);
+			List<ClientDao> daoResponse = repo.getAllClientsByName(name);
 
 			log.info("::GET getByName  SERVICE ::  MAPPING RESPONSE DAO TO RESPONSE");
-			Client response = new Client();
-			response.setName(daoResponse.getName());
-			response.setLastName(daoResponse.getLastName());
-			response.setAge(daoResponse.getAge());
-			response.setGender(daoResponse.getGender());
-
+			List<Client> response = responseTransform.transformClientModelToClientService(daoResponse);
+			if(response.isEmpty()) { throw new RuntimeException() ; }
 			log.info("::GET getByName  SERVICE :: RESPONSE {}  ", response);
 
 		return response;

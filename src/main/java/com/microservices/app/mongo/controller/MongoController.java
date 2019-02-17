@@ -37,7 +37,7 @@ public interface MongoController {
 	
 	@GetMapping(value="/getclientbyname")
 	@ResponseStatus(HttpStatus.OK) 			
-	public ResponseEntity<Object> getclientbyname(String name) ;
+	public ResponseEntity<Object> getAllClientsByName(String name) ;
 	
 	
 }
