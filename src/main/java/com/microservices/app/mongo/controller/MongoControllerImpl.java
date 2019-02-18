@@ -22,9 +22,15 @@ public class MongoControllerImpl implements MongoController {
 	@Autowired
 	private ValidatorControllerRequests validator;
 
-	public void createClient(@RequestBody Client request) {
-		log.info(":::POST createClient :: CONTROLLER RUNNING:::");
-		service.createClient(request);
+	public ResponseEntity<Object> createClient(@RequestBody Client request) {
+		try {
+			log.info(":::POST createClient :: CONTROLLER RUNNING:::");
+			service.createClient(request);
+		}catch (Exception e ) {
+			log.info("GET  getclientbyname  EXCEPTION : " + e.getMessage());
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(" SOMETHING HAPPEND PLEASE REVIEW LOGGS");
+		}
+		return ResponseEntity.status(HttpStatus.CREATED).body("Client Was Created");
 	}
 
 	public List<Client> getAllClients() {

@@ -16,6 +16,9 @@ public class ResponseTransform {
 		List<Client> response = new ArrayList<Client>();
 		responseModel.stream().forEach(x -> { 
 			Client client = new Client();
+			if(x.getId()!=null && !x.getId().isEmpty()) {
+				client.setId(x.getId());
+			}
 			client.setName(x.getName());
 			client.setLastName(x.getLastName());
 			client.setAge(x.getAge());

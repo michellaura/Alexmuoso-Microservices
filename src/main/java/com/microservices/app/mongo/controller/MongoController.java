@@ -25,7 +25,7 @@ public interface MongoController {
 	 */
 	@RequestMapping(value = "/createclient", method = RequestMethod.POST   , produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.OK)
-	public void createClient(@RequestBody Client request);
+	public ResponseEntity<Object> createClient(@RequestBody Client request);
 	
 	/*  This operation will be return all the clients in mongo DOCS
 	 *  LOGG INFORMARION
