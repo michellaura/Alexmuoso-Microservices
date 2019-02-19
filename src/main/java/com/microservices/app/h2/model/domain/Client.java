@@ -1,4 +1,4 @@
-package com.microservices.app.h2.domain;
+package com.microservices.app.h2.model.domain;
 
 import lombok.Data;
 

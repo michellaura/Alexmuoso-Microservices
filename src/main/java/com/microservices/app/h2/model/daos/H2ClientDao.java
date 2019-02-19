@@ -1,4 +1,4 @@
-package com.microservices.app.h2.daos;
+package com.microservices.app.h2.model.daos;
 
 import java.io.Serializable;
 
@@ -20,10 +20,18 @@ public class H2ClientDao implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 	
-	@Column
+	@Column(name="NAME")
 	private String name;
+	@Column(name="LAST_NAME")
+	private String lastName;
+	@Column(name="AGE")
+	private String age;
+	@Column(name="GENDER")
+	private String gender;
 
+	
+	
 	
 }
