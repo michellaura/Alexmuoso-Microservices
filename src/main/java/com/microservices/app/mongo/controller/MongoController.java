@@ -14,23 +14,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.microservices.app.mongo.domain.Client;
 
+import io.swagger.annotations.Api;
+
 @RestController
 @RequestMapping(value = "/mongo" ) 
+@Api(value=" Microservices Mongo" , tags="Microservices Mongo ")
 public interface MongoController {
-	/*
-	 * Mappign url
-	 * statust for response
-	 * method which receive a body of a class an map by attributes
-	 * calling service
-	 */
+
 	@RequestMapping(value = "/createclient", method = RequestMethod.POST   , produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.OK)
 	public ResponseEntity<Object> createClient(@RequestBody Client request);
 	
-	/*  This operation will be return all the clients in mongo DOCS
-	 *  LOGG INFORMARION
-	 *	CALLING SERVICE
-	 */ 
 	@GetMapping(value="/getallclients")
 	@ResponseStatus(HttpStatus.OK) 			
 	public List<Client> getAllClients();

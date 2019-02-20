@@ -9,17 +9,25 @@ import org.springframework.web.bind.annotation.RestController;
 import com.microservices.app.h2.model.domain.Client;
 import com.microservices.app.h2.model.domain.Product;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 @RestController
 @RequestMapping(value="/hdos")
+@Api(value=" Microservices h2" , tags="Microservices H2 ")
 public interface H2Controller {
 	
 		@GetMapping("/test")
 		public String helloTest();
 	
-		@RequestMapping(value="/getallclients")
+		@GetMapping(value="/getallclients")
+		@ApiOperation(value=" ",  notes="THIS OPERATION WILL RETURN ALL THE CLIENTS IN H2 PERISTENCE DB ", response = Client.class )
+		@ApiResponses(value= {@ApiResponse(code = 200 , message =" Successful operation ")})
 		public List<Client> getAllClients();
 		
-		@RequestMapping(value="/getallproducts")
+		@GetMapping(value="/getallproducts")
 		public List<Product> getAllProducts();
 	
 }
