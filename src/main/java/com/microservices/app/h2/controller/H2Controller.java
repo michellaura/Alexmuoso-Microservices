@@ -15,19 +15,21 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
 @RestController
-@RequestMapping(value="/hdos")
-@Api(value=" Microservices h2" , tags="Microservices H2 ")
+@RequestMapping(value="/h2")
+@Api(value=" Microservices H2" , tags="Microservices H2 ")
 public interface H2Controller {
 	
 		@GetMapping("/test")
 		public String helloTest();
 	
 		@GetMapping(value="/getallclients")
-		@ApiOperation(value=" ",  notes="THIS OPERATION WILL RETURN ALL THE CLIENTS IN H2 PERISTENCE DB ", response = Client.class )
-		@ApiResponses(value= {@ApiResponse(code = 200 , message =" Successful operation ")})
+		@ApiOperation(value=" ",  notes="THIS OPERATION WILL RETURN ALL THE CLIENTS IN H2 PERISTENCE DB", response = Client.class )
+		@ApiResponses(value= {@ApiResponse(code = 200 , message =" SUCCESS OPERATION ")})
 		public List<Client> getAllClients();
 		
 		@GetMapping(value="/getallproducts")
+		@ApiOperation(value=" ",  notes="THIS OPERATION WILL RETURN ALL THE PRODUCTS IN H2 PERISTENCE DB", response = Client.class )
+		@ApiResponses(value= {@ApiResponse(code = 200 , message =" SUCCESS OPERATION ")})
 		public List<Product> getAllProducts();
 	
 }
