@@ -25,28 +25,22 @@ import io.swagger.annotations.ApiResponses;
 public interface MongoController {
 	
 	
-	//*** Swagger - Documentation ****  
 	@ApiOperation(value=" ",  notes="THIS OPERATION WILL CREATE A CLIENT IN MONGO DOCS CLUSTER", response = Client.class )
 	@ApiResponses(value= {@ApiResponse(code = 200 , message =" SUCCESS OPERATION ")})
-	//*** Swagger - Documentation ****
 		@PostMapping(value = "/createclient", produces = MediaType.APPLICATION_JSON_VALUE)
 		@ResponseStatus(HttpStatus.CREATED)                   
 		public ResponseEntity<Object> createClient(@RequestBody Client request);
 	
 	
-	//*** Swagger - Documentation ****
 	@ApiOperation(value=" ",  notes="THIS OPERATION WILL RETURN ALL THE CLIENTS IN MONGO CLUSTER", response = Client.class )
 	@ApiResponses(value= {@ApiResponse(code = 200 , message =" SUCCESS OPERATION ")})
-	//*** Swagger - Documentation ****
 		@GetMapping(value="/getallclients")
 		@ResponseStatus(HttpStatus.OK) 			
 		public List<Client> getAllClients();
 	
 	
-	//*** Swagger - Documentation ****
 	@ApiOperation(value=" ",  notes="THIS OPERATION WILL RETURN ALL CLIENTS BY NAME", response = Client.class )
 	@ApiResponses(value= {@ApiResponse(code = 200 , message =" SUCCESS OPERATION ")})
-	//*** Swagger - Documentation ****
 		@GetMapping(value="/getclientbyname")
 		@ResponseStatus(HttpStatus.OK) 			
 		public ResponseEntity<Object> getAllClientsByName(String name) ;

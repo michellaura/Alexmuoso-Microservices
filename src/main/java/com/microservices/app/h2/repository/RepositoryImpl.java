@@ -33,5 +33,12 @@ public class RepositoryImpl {
 		log.info(":: GET getAllProducts  REPO  ::  RESPONSE {} ", daoResponse);
 		return daoResponse;
 	}
+	
+	public List<ProductDao> getAllProductByDate(String dateFrom) {
+		log.info(":: GET getAllProductByDate  REPO  ::  GET ALL PRODUCTS RUNNING DATE : {} ", dateFrom);
+		List<ProductDao> daoResponse =  productRepo.getAllProductsByDate(dateFrom);
+		log.info(":: GET getAllProductByDate  REPO  ::  RESPONSE {} ", daoResponse);
+		return daoResponse;
+	}
 
 }

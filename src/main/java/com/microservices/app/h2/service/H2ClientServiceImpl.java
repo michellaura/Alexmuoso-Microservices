@@ -60,5 +60,23 @@ public class H2ClientServiceImpl implements H2ClientService {
 		log.info(":: GET getAllProducts    SERVICE :: RETURN RESPONSE  {}", response);
 		return response;
 	}
+
+
+	@Override
+	public List<Product> getProductByDate(String dateFrom) {
+		log.info(":: GET getProductByDate   SERVICE :: RUNNING  DATE REQUEST  : {} " , dateFrom);
+		List<ProductDao> reponseDao = repo.getAllProductByDate(dateFrom);
+		log.info(":: GET getProductByDate   SERVICE ::  DB INFO {} ", reponseDao);
+		List<Product> response = new ArrayList<Product>();
+
+		reponseDao.stream().forEach((product) -> {
+			log.info(":: GET   getProductByDate   SERVICE - MAPPER ::  DB INFO {} ", product);
+			response.add(facade.map(product, Product.class));
+
+		});
+
+		log.info(":: GET   getProductByDate    SERVICE :: RETURN RESPONSE  {}", response);
+		return response;
+	}
 	
 }
