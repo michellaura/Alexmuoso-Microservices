@@ -1,5 +1,6 @@
 package com.microservices.app.mongo.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import com.microservices.app.mongo.domain.Client;
+import com.microservices.app.mongo.model.domain.Client;
 import com.microservices.app.mongo.service.ClientService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -25,22 +26,43 @@ public class MongoControllerImpl implements MongoController {
 
 	public ResponseEntity<Object> createClient(@RequestBody Client request) {
 		try {
-			log.info(":::POST createClient :: CONTROLLER RUNNING:::");
-			service.createClient(request);
-		}catch (Exception e ) {
+			StringBuffer exceptionMessage = new StringBuffer();
+			log.info(":::POST createClient :: CONTROLLER RUNNING  REQUEST {}  ,  ", request);
+
+			log.info(":::POST createClient :: VALIDATE REQUEST {}  ,  ", request);
+			validator.validateName(request.getName(), exceptionMessage);
+
+			if (exceptionMessage.length() == 0) {
+
+				log.info(":::POST createClient :: CONTROLLER  CALLING SERVICE  ::: ");
+				service.createClient(request);
+			}else {
+				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(" REVIEW YOU PARAMAETERS : " + exceptionMessage);
+			}
+		} catch (Exception e) {
 			log.info("GET  getclientbyname  EXCEPTION : " + e.getMessage());
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("SOMETHING HAPPENED PLEASE REVIEW LOGS " + e.getMessage());
 		}
 		return ResponseEntity.status(HttpStatus.CREATED).body("");
 	}
 
-	public List<Client> getAllClients() {
+	public  ResponseEntity<Object> getAllClients() {
+		List<Client> response = new ArrayList<Client>();
 		log.info("::GET getAllClients :: CONTROLLER RUNNING");
-		return service.getAllClients();
+		try {
+			response =  service.getAllClients();
+			log.info("::GET getAllClients :: CONTROLLER  RESPONSE {} " ,  response);
+		}
+		catch (Exception e ) {
+			log.info("GET  getAllClients  EXCEPTION : " + e.getMessage());
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("SOMETHING HAPPENED PLEASE REVIEW LOGS " + e.getLocalizedMessage());
+		}
+		return ResponseEntity.status(HttpStatus.CREATED).body(response);
+		
 	}
 
 	@Override
-	public ResponseEntity<Object> getAllClientsByName(String name) {
+	public ResponseEntity<Object> getAllClientsWithName(String name) {
 		StringBuffer exceptionMessage = new StringBuffer();
 		List<Client>response;
 

@@ -1,12 +1,13 @@
 package com.microservices.app.mongo.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.microservices.app.mongo.domain.Client;
-import com.microservices.app.mongo.model.ClientDao;
+import com.microservices.app.mongo.model.daos.ClientDao;
+import com.microservices.app.mongo.model.domain.Client;
 import com.microservices.app.mongo.repository.ClientRepositoryImpl;
 import com.microservices.app.mongo.service.mappers.RequestTransform;
 import com.microservices.app.mongo.service.mappers.ResponseTransform;
@@ -26,11 +27,18 @@ public class ClientServiceImpl implements ClientService {
 
 	@Override
 	public List<Client> getAllClients() {
+		List<Client> response = new ArrayList<Client>() ;
+		
 		log.info("::GET getAllClients  SERVICE :: CALL REPO  ");
 		List<ClientDao> modelResponse = repo.getAllClients();
 
-		log.info("::GET getAllClients  SERVICE :: MAPPING DAO TO RESPONSE  ");
-		List<Client> response = responseTransform.transformClientModelToClientService(modelResponse);
+		log.info("::GET getAllClients  SERVICE :: VALIDATE RESPONSE {}  " ,  modelResponse);
+		if(modelResponse.isEmpty()) {
+			//DO SOMETHING
+		}else {
+			log.info("::GET getAllClients  SERVICE :: MAPPING DAO TO RESPONSE  ");
+			response	= responseTransform.transformClientModelToClientService(modelResponse);
+		}
 
 		log.info("::GET getAllClients  SERVICE :: RESPONSE {}  ", response);
 		return response;
