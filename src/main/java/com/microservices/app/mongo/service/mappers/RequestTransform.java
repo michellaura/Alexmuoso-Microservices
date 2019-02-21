@@ -2,8 +2,8 @@ package com.microservices.app.mongo.service.mappers;
 
 import org.springframework.stereotype.Component;
 
-import com.microservices.app.mongo.domain.Client;
-import com.microservices.app.mongo.model.ClientDao;
+import com.microservices.app.mongo.model.daos.ClientDao;
+import com.microservices.app.mongo.model.domain.Client;
 
 @Component
 public class RequestTransform {

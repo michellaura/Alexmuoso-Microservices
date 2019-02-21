@@ -15,7 +15,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
 @RestController
-@RequestMapping(value="/h2")
+@RequestMapping(value="/hdos")
 @Api(value=" Microservices H2" , tags="Microservices H2 ")
 public interface H2Controller {
 	
@@ -31,5 +31,4 @@ public interface H2Controller {
 		@ApiOperation(value=" ",  notes="THIS OPERATION WILL RETURN ALL THE PRODUCTS IN H2 PERISTENCE DB", response = Client.class )
 		@ApiResponses(value= {@ApiResponse(code = 200 , message =" SUCCESS OPERATION ")})
 		public List<Product> getAllProducts();
-	
 }

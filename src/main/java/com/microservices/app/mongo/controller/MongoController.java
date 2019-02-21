@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.microservices.app.mongo.domain.Client;
+import com.microservices.app.mongo.model.domain.Client;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -40,16 +40,16 @@ public interface MongoController {
 	//*** Swagger - Documentation ****
 		@GetMapping(value="/getallclients")
 		@ResponseStatus(HttpStatus.OK) 			
-		public List<Client> getAllClients();
+		public ResponseEntity<Object> getAllClients();
 	
 	
 	//*** Swagger - Documentation ****
 	@ApiOperation(value=" ",  notes="THIS OPERATION WILL RETURN ALL CLIENTS BY NAME", response = Client.class )
 	@ApiResponses(value= {@ApiResponse(code = 200 , message =" SUCCESS OPERATION ")})
 	//*** Swagger - Documentation ****
-		@GetMapping(value="/getclientbyname")
+		@GetMapping(value="/getallclientswithname")
 		@ResponseStatus(HttpStatus.OK) 			
-		public ResponseEntity<Object> getAllClientsByName(String name) ;
+		public ResponseEntity<Object> getAllClientsWithName(String name) ;
 	
 	
 }
