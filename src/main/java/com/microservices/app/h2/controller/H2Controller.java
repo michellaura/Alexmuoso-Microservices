@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -43,6 +45,12 @@ public interface H2Controller {
 		@ApiResponses(value= {@ApiResponse(code = 200 , message =" SUCCESS OPERATION ")})
 			@ResponseStatus(HttpStatus.OK) 			
 			@GetMapping(value="/getproductsbydatecreatedtotodaydate" )
-			public List<Product> getProductByDate(String dateFrom );
+			public List<Product> getProductByDate(String dateFrom ) ;
+		
+		@ApiOperation(value=" ",  notes="THIS OPERATION WILL CREATE A NEW CLIENT IN H2 PERSISTENCE DATA BASE " )
+		@ApiResponses(value= {@ApiResponse(code = 200 , message =" SUCCESS OPERATION ")})
+			@ResponseStatus(HttpStatus.OK) 			
+			@PostMapping(value="/createclient" )
+			public Product createClient(@RequestBody Product product );
 	 
 }

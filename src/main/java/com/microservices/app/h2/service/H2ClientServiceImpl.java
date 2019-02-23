@@ -75,7 +75,7 @@ public class H2ClientServiceImpl implements H2ClientService {
 
 		});
 
-		log.info(":: GET   getProductByDate    SERVICE :: RETURN RESPONSE  {}", response);
+		log.info(":: GET  getProductByDate    SERVICE :: RETURN RESPONSE  {}", response);
 		return response;
 	}
 	

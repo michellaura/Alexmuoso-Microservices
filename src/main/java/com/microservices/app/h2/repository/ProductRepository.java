@@ -13,7 +13,7 @@ import com.microservices.app.h2.model.daos.ProductDao;
 public interface ProductRepository  extends CrudRepository<ProductDao, Long>{
 	
 	
-	@Query(value="SELECT * FROM PRODUCTS  WHERE  CREATE_AT > :dateFrom " , nativeQuery= true)
+	@Query(value="SELECT * FROM PRODUCTS  WHERE  CREATE_AT = :dateFrom ;  " , nativeQuery= true)
 	public List<ProductDao> getAllProductsByDate(@Param("dateFrom") String dateFrom);
 	
 	
