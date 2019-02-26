@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-import com.microservices.app.mongo.model.ClientDao;
+import com.microservices.app.mongo.model.daos.ClientDao;
 
 import lombok.extern.slf4j.Slf4j;
 

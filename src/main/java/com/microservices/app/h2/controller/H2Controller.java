@@ -59,5 +59,4 @@ public interface H2Controller {
 			@ResponseStatus(HttpStatus.CREATED) 			
 			@PostMapping(value="/createclientwithentitymanager" )
 			public ResponseEntity<String> createClientWithEntityManager(@RequestBody Client client );
-	 
 }

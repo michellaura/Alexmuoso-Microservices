@@ -1,4 +1,4 @@
-package com.microservices.app.mongo.domain;
+package com.microservices.app.mongo.model.domain;
 
 import lombok.Data;
 

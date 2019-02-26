@@ -9,11 +9,13 @@ import lombok.extern.slf4j.Slf4j;
 public class ValidatorControllerRequests {
 
 	public void validateName(String name, StringBuffer exceptionMessage) {
-		log.info("::GET clientByName :: validator name ");
-		if( name == null || name.isEmpty() ) {
-			exceptionMessage.append( " name " + name + " is invalid ");
-			log.info("::GET clientByName  EXCEPTION   :: " +exceptionMessage);
-		}
+		log.info("::GET CREATE CLIENT  :: VALIDATOR NAME :  {} " , name);
+		 if(name==null || name.isEmpty() ) { 
+			 exceptionMessage.append( " name " + name + " is invalid "); 
+		 }
+		 else {
+			 log.info("::GET CREATE CLIENT  EXCEPTION   :: " +exceptionMessage);
+		 }
 	}
 	
 }
