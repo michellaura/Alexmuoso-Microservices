@@ -13,8 +13,9 @@ import com.microservices.app.mongo.service.ClientService;
 
 import lombok.extern.slf4j.Slf4j;
 
-@Component
+
 @Slf4j
+@Component
 public class MongoControllerImpl implements MongoController {
 
 	@Autowired
@@ -28,9 +29,9 @@ public class MongoControllerImpl implements MongoController {
 			service.createClient(request);
 		}catch (Exception e ) {
 			log.info("GET  getclientbyname  EXCEPTION : " + e.getMessage());
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(" SOMETHING HAPPEND PLEASE REVIEW LOGGS");
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("SOMETHING HAPPENED PLEASE REVIEW LOGS " + e.getMessage());
 		}
-		return ResponseEntity.status(HttpStatus.CREATED).body("Client Was Created");
+		return ResponseEntity.status(HttpStatus.CREATED).body("");
 	}
 
 	public List<Client> getAllClients() {
