@@ -12,6 +12,7 @@ import com.microservices.app.h2.model.daos.H2ClientDao;
 import com.microservices.app.h2.model.daos.ProductDao;
 import com.microservices.app.h2.model.domain.Client;
 import com.microservices.app.h2.model.domain.Product;
+import com.microservices.app.h2.repository.Repository;
 import com.microservices.app.h2.repository.RepositoryImpl;
 
 import lombok.extern.slf4j.Slf4j;
@@ -23,7 +24,7 @@ import net.bytebuddy.utility.RandomString;
 public class H2ClientServiceImpl implements H2ClientService {
 
 	@Autowired
-	private	RepositoryImpl repo;
+	private	Repository repo;
 	
 	private MapperFacade facade = new OrikaMapper();
 	
