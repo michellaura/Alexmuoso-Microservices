@@ -3,6 +3,7 @@ package com.microservices.app.h2.controller;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -49,8 +50,14 @@ public interface H2Controller {
 		
 		@ApiOperation(value=" ",  notes="THIS OPERATION WILL CREATE A NEW CLIENT IN H2 PERSISTENCE DATA BASE " )
 		@ApiResponses(value= {@ApiResponse(code = 200 , message =" SUCCESS OPERATION ")})
-			@ResponseStatus(HttpStatus.OK) 			
+			@ResponseStatus(HttpStatus.CREATED) 			
 			@PostMapping(value="/createclient" )
 			public Product createClient(@RequestBody Product product );
+		
+		@ApiOperation(value=" ",  notes="THIS OPERATION WILL CREATE A NEW CLIENT IN H2 PERSISTENCE DATA BASE BY ENTITY MANAGER OF HIBERNATE" )
+		@ApiResponses(value= {@ApiResponse(code = 200 , message =" SUCCESS OPERATION ")})
+			@ResponseStatus(HttpStatus.CREATED) 			
+			@PostMapping(value="/createclientwithentitymanager" )
+			public ResponseEntity<String> createClientWithEntityManager(@RequestBody Client client );
 	 
 }

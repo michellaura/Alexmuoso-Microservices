@@ -12,6 +12,7 @@ import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 
 import lombok.Data;
 
@@ -24,10 +25,15 @@ public class ProductDao implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="PRODUCTS_ID")
 	private Long id;
 
+	@NotNull
+	@Column(name="NAME")
 	private String name;
-
+	
+	@NotNull
+	@Column(name="PRICE")
 	private Double price;
 
 	@Temporal(TemporalType.DATE)

@@ -17,24 +17,4 @@ public class OrikaMapper extends ConfigurableMapper{
 	    factory.classMap(H2ClientDao.class, Client.class ).byDefault().register(); //.field("","")  .fieldMap TO DATES .byDefault() .Register();
 		return factory;
 	}
-	
-//	public MapperFactory mapProductDaoToProduct(MapperFactory factory) {
-//		ConverterFactory convFact = factory.getConverterFactory();
-//		convFact.registerConverter(new PassThroughConverter(LocalDate.class));
-//	    factory.classMap(H2ClientDao.class, Product.class ).byDefault().register(); //.field("","")  .fieldMap TO DATES .byDefault() .Register();
-//		return factory;
-//	}
-//	
-//	public MapperFactory mapObjectToClient(MapperFactory factory) {
-//	    factory.classMap(Object.class, Client.class ).byDefault().register(); //.field("","")  .fieldMap TO DATES .byDefault() .Register();
-//		return factory;
-//	}
-//	
-//	public MapperFactory mapObjectDaoToProduct(MapperFactory factory) {
-//		ConverterFactory convFact = factory.getConverterFactory();
-//		convFact.registerConverter(new PassThroughConverter(LocalDate.class));
-//	    factory.classMap(Object.class, Product.class ).byDefault().register(); //.field("","")  .fieldMap TO DATES .byDefault() .Register();
-//		return factory;
-//	}
-	
 }
