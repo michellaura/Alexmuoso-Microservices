@@ -13,11 +13,9 @@ import com.microservices.app.h2.model.daos.ProductDao;
 import com.microservices.app.h2.model.domain.Client;
 import com.microservices.app.h2.model.domain.Product;
 import com.microservices.app.h2.repository.Repository;
-import com.microservices.app.h2.repository.RepositoryImpl;
 
 import lombok.extern.slf4j.Slf4j;
 import ma.glasnost.orika.MapperFacade;
-import net.bytebuddy.utility.RandomString;
 
 @Slf4j
 @Component
@@ -83,10 +81,9 @@ public class H2ClientServiceImpl implements H2ClientService {
 
 
 	@Override
-	@javax.transaction.Transactional
-	public void createClientByEntityManager(Client client) {
+	public List<Client> createClientByEntityManager(Client client) {
 		log.info(":: POST createClientByEntityManager   SERVICE :: RUNNING  DATE REQUEST {}", client);
-
+		List<Client> response = new ArrayList<Client>();
 		log.info(":: POST createClientByEntityManager   SERVICE - MAPPER ");
 		H2ClientDao clientDao = new H2ClientDao();
 		clientDao.setName(client.getName());
@@ -94,9 +91,17 @@ public class H2ClientServiceImpl implements H2ClientService {
 		clientDao.setAge(client.getAge());
 		clientDao.setGender(client.getGender());
 		
-		log.info(":: POST createClientByEntityManager    SERVICE :: CALL REPO  Dao {}", clientDao);
-		repo.createClientByEntityManager(clientDao);
+		log.info(":: POST createClientByEntityManager  SERVICE :: CALL REPO  Dao {}", clientDao);
+		List<H2ClientDao> responseList  = repo.createClientByEntityManager(clientDao);
+		log.info(":: POST createClientByEntityManager  SERVICE - MAPPER ::  DB INFO {} " , responseList);
 
+		responseList.stream().forEach((dao) -> {
+			log.info(":: POST createClientByEntityManager SERVICE - MAPPER ::  DB INFO {} " , dao);
+			response.add(facade.map(dao, Client.class));
+
+		});
+		log.info(":: POST createClientByEntityManager SERVICE :: RETURN RESPONSE  {}", response);
+		return response;
 	}
 	
 }

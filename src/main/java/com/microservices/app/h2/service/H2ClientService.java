@@ -13,5 +13,5 @@ public interface H2ClientService {
 	public List<Client> getAllClients();
 	public List<Product> getAllProducts();
 	public List<Product> getProductByDate(String dateFrom);
-	public void createClientByEntityManager(Client client);
+	public List<Client> createClientByEntityManager(Client client);
 }

@@ -58,11 +58,12 @@ public class H2ControllerImpl implements H2Controller{
 	}
 
 	@Override
-	public ResponseEntity<String> createClientWithEntityManager(Client client) {
+	public ResponseEntity<List<Client>> createClientWithEntityManager(Client client) {
 		log.info(":: POST  CONTROLLER :  createClientWithEntityManager : RUNNING  REQUEST : {}" , client);
-		service.createClientByEntityManager(client);
+		List<Client> response = service.createClientByEntityManager(client);
 		log.info(":: POST  CONTROLLER :  createClientWithEntityManager : SUCCESS : {}" ,  client);
-		return new ResponseEntity<>(" Cliente CREATED   : client ",HttpStatus.CREATED);
+	
+		return  ResponseEntity.status(HttpStatus.CREATED).body(response);
 	}
 	
 

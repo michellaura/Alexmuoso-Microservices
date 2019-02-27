@@ -16,5 +16,5 @@ public interface Repository {
 	
 	public List<ProductDao> getAllProductByDate(String dateFrom) ;
 
-	public void createClientByEntityManager(H2ClientDao clientDao) ;
+	public List<H2ClientDao> createClientByEntityManager(H2ClientDao clientDao) ;
 }

@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class Client {
-	private long id;
+	private Integer id;
 	private String name;
 	private String lastName;
 	private String age;

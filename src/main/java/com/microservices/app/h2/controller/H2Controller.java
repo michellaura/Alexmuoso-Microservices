@@ -54,10 +54,12 @@ public interface H2Controller {
 			@PostMapping(value="/createclient" )
 			public Product createClient(@RequestBody Product product );
 		
-		@ApiOperation(value=" ",  notes="THIS OPERATION WILL CREATE A NEW CLIENT IN H2 PERSISTENCE DATA BASE BY ENTITY MANAGER OF HIBERNATE" )
+		@ApiOperation(value=" ",  notes="THIS OPERATION WILL CREATE A NEW CLIENT IN H2 PERSISTENCE DATA BASE BY ENTITY MANAGER OF HIBERNATE" , response = Client.class)
 		@ApiResponses(value= {@ApiResponse(code = 200 , message =" SUCCESS OPERATION ")})
 			@ResponseStatus(HttpStatus.CREATED) 			
 			@PostMapping(value="/createclientwithentitymanager" )
-			public ResponseEntity<String> createClientWithEntityManager(@RequestBody Client client );
+			public ResponseEntity<List<Client>> createClientWithEntityManager(@RequestBody Client client );
 	 
+		
+		
 }
