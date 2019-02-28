@@ -1,12 +1,13 @@
 package com.microservices.app.h2.repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.Query;
-import javax.transaction.Transactional;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -57,26 +58,16 @@ public class RepositoryImpl implements Repository {
 	}
 	
 	@Override
-	@Transactional
 	public List<H2ClientDao> createClientByEntityManager(H2ClientDao clientDao) {
 		log.info(":: POST createClientByEntityManager  REPO  :: ClientDao  {}", clientDao);
 		log.info(":: Insert clientDao Entity  :: {}" , clientDao);
 		jpa.save(clientDao); 
-		
-		EntityManager manager = enf.createEntityManager();
-		manager.getTransaction().begin();
-		 	
-//			Query query =   manager.createNativeQuery("SELECT * FROM CLIENTS");
-//			List<H2ClientDao> list = query.getResultList();
-		List<H2ClientDao> list = jpa.findAll();
-			log.info(" the list :: {}" ,list);
 			
-//			manager.persist(clientDao);
-			
-		manager.getTransaction().commit();
-		manager.close();
-		return  list;
+			EntityManager manager = enf.createEntityManager();
+			TypedQuery<H2ClientDao> namedQuery = manager.createNamedQuery("find_all_clients", H2ClientDao.class);
+			return namedQuery.getResultList();
 	}
+	
 	
 }
 

@@ -17,3 +17,7 @@ INSERT INTO PRODUCTS (NAME, PRICE, CREATE_AT) VALUES('Sony Notebook Z110', 37990
 INSERT INTO PRODUCTS (NAME, PRICE, CREATE_AT) VALUES('Hewlett Packard Multifuncional F2280', 69990, NOW());
 INSERT INTO PRODUCTS (NAME, PRICE, CREATE_AT) VALUES('Bianchi Bicicleta Aro 26', 69990, NOW());
 INSERT INTO PRODUCTS (NAME, PRICE, CREATE_AT) VALUES('Mica Comoda 5 Cajones', 299990, NOW());
+
+INSERT INTO ADDRESS (STREET, CITY, STATE,ZIP) VALUES('Vista Hermosa','Jose santos chocano','colima','578');
+INSERT INTO ADDRESS (STREET, CITY, STATE,ZIP)VALUES('Vista Hermosa','Jose santos chocano','colima','578');
+INSERT INTO ADDRESS (STREET, CITY, STATE,ZIP) VALUES('Vista Hermosa','Jose santos chocano','colima','578');

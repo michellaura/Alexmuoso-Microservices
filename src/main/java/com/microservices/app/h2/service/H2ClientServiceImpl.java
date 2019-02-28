@@ -92,11 +92,11 @@ public class H2ClientServiceImpl implements H2ClientService {
 		clientDao.setGender(client.getGender());
 		
 		log.info(":: POST createClientByEntityManager  SERVICE :: CALL REPO  Dao {}", clientDao);
-		List<H2ClientDao> responseList  = repo.createClientByEntityManager(clientDao);
-		log.info(":: POST createClientByEntityManager  SERVICE - MAPPER ::  DB INFO {} " , responseList);
+		List<H2ClientDao> reponseDao  = repo.createClientByEntityManager(clientDao);
+		log.info(":: POST createClientByEntityManager  SERVICE - MAPPER ::  DB INFO {} " , reponseDao);
 
-		responseList.stream().forEach((dao) -> {
-			log.info(":: POST createClientByEntityManager SERVICE - MAPPER ::  DB INFO {} " , dao);
+		reponseDao.stream().forEach((dao) -> {
+			log.info(":: POST lala getAllClients  SERVICE - MAPPER ::  DB INFO {} " , dao);
 			response.add(facade.map(dao, Client.class));
 
 		});
