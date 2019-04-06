@@ -1,7 +1,6 @@
 package com.microservices.app.h2.repository;
 
 import java.util.List;
-
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
@@ -10,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import com.microservices.app.h2.model.daos.H2ClientDao;
 import com.microservices.app.h2.model.daos.ProductDao;
+import com.microservices.app.h2.model.domain.Client;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -25,8 +25,8 @@ public class RepositoryImpl implements Repository {
 	
 	@Autowired
 	private ProductRepository productRepo;
-	private EntityManagerFactory emf  =  Persistence.createEntityManagerFactory("PERSISTENCE");
 	
+	private EntityManagerFactory emf  =  Persistence.createEntityManagerFactory("PERSISTENCE");
 	
 	@Override
 	public List<H2ClientDao> getAllClients() {
@@ -55,6 +55,29 @@ public class RepositoryImpl implements Repository {
 		log.info(":: Insert clientDao Entity  :: {}" , clientDao);
 		jpa.save(clientDao);  
 		
+	}
+	@Override
+	public H2ClientDao getById(long id) {
+		H2ClientDao daoResponse = jpa.findById(id).get();
+		log.info("User: [ "+daoResponse+" ]");
+		return daoResponse;
 	} 
+//	@Override
+//	public H2ClientDao getById(long id) {
+//		H2ClientDao daoResponse = jpa.getOne(id);
+//		return daoResponse;
+//	}
+	@Override
+	public void deleteById(long id) {
+		jpa.deleteById(id);
+	}
+	
+	@Override
+	public H2ClientDao updateClient(H2ClientDao client, long id) {
+		H2ClientDao daoResponse = jpa.findById(id).get();
+		daoResponse = jpa.save(client);
+		log.info("User in Repo: "+ daoResponse);
+		return daoResponse;
+	}
 
 }

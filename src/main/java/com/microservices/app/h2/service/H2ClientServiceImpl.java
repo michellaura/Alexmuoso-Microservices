@@ -1,9 +1,11 @@
 package com.microservices.app.h2.service;
 
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,6 +14,7 @@ import com.microservices.app.h2.model.daos.H2ClientDao;
 import com.microservices.app.h2.model.daos.ProductDao;
 import com.microservices.app.h2.model.domain.Client;
 import com.microservices.app.h2.model.domain.Product;
+import com.microservices.app.h2.repository.H2ClientRepository;
 import com.microservices.app.h2.repository.Repository;
 import com.microservices.app.h2.repository.RepositoryImpl;
 
@@ -44,7 +47,6 @@ public class H2ClientServiceImpl implements H2ClientService {
 		return response;
 	}
 
-
 	@Override
 	@Transactional(readOnly = true)
 	public List<Product> getAllProducts() {
@@ -63,7 +65,6 @@ public class H2ClientServiceImpl implements H2ClientService {
 		return response;
 	}
 
-
 	@Override
 	public List<Product> getProductByDate(String dateFrom) {
 		log.info(":: GET getProductByDate   SERVICE :: RUNNING  DATE REQUEST  : {} " , dateFrom);
@@ -81,7 +82,6 @@ public class H2ClientServiceImpl implements H2ClientService {
 		return response;
 	}
 
-
 	@Override
 	@javax.transaction.Transactional
 	public void createClientByEntityManager(Client client) {
@@ -93,10 +93,50 @@ public class H2ClientServiceImpl implements H2ClientService {
 		clientDao.setLastName(client.getLastName());
 		clientDao.setAge(client.getAge());
 		clientDao.setGender(client.getGender());
-		
+		 
 		log.info(":: POST createClientByEntityManager    SERVICE :: CALL REPO  Dao {}", clientDao);
 		repo.createClientByEntityManager(clientDao);
-
 	}
 	
+	@Override
+	@javax.transaction.Transactional
+	public H2ClientDao getById(long id) {
+		H2ClientDao clientDao = new H2ClientDao();
+		clientDao.getId();
+		clientDao.getName();
+		clientDao.getLastName();
+		clientDao.getGender();
+		clientDao.getAge();
+		return clientDao = repo.getById(id);
+	}
+
+	@Override
+	@javax.transaction.Transactional
+	public void deleteById(long id) {
+		repo.deleteById(id);
+	}
+	
+	@Override
+	@javax.transaction.Transactional
+	public H2ClientDao updateClient(long id, Client client) {
+		H2ClientDao clientDao1 = new H2ClientDao();
+		clientDao1.setId(id);
+		clientDao1.setName(client.getName());
+		clientDao1.setLastName(client.getLastName());
+		clientDao1.setAge(client.getAge());
+		clientDao1.setGender(client.getGender());
+		log.info("User in serviceImpl: "+clientDao1);
+		return clientDao1 = repo.updateClient(clientDao1, id);
+	}
+
+//	@Override
+//	public H2ClientDao getById(long id) {
+//		H2ClientDao clientDao = new H2ClientDao();
+//		clientDao.getId();
+//		clientDao.getName();
+//		clientDao.getLastName();
+//		clientDao.getGender();
+//		clientDao.getAge();
+//		return clientDao;
+//	}
 }
