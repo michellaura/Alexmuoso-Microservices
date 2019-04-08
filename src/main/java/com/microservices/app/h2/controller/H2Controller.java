@@ -4,13 +4,17 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.microservices.app.h2.model.daos.H2ClientDao;
 import com.microservices.app.h2.model.domain.Client;
 import com.microservices.app.h2.model.domain.Product;
 
@@ -35,6 +39,25 @@ public interface H2Controller {
 			@ResponseStatus(HttpStatus.OK) 			
 			@GetMapping(value="/getallclients")
 			public List<Client> getAllClients();
+		
+		@ApiOperation(value=" ",  notes="THIS OPERATION DELETE THE CLIENT BY ID IN H2 PERISTENCE DB", response = Client.class )
+		@ApiResponses(value= {@ApiResponse(code = 200 , message =" SUCCESS OPERATION ")})
+			@ResponseStatus(HttpStatus.OK) 			
+			@DeleteMapping(value="/deleteclient/{id}")
+			public void deleteClientById(@PathVariable("id") Long id);
+		
+		@ApiOperation(value=" ",  notes="THIS OPERATION WILL CREATE A NEW CLIENT IN H2 PERSISTENCE DATA BASE " )
+		@ApiResponses(value= {@ApiResponse(code = 200 , message =" SUCCESS OPERATION ")})
+			@ResponseStatus(HttpStatus.CREATED) 			
+			@PutMapping(value="/updateclient" )
+			public H2ClientDao updateClient(@RequestBody H2ClientDao clientDao);
+		
+		
+		@ApiOperation(value=" ",  notes="THIS OPERATION WILL RETURN ALL THE CLIENTS IN H2 PERISTENCE DB", response = Client.class )
+		@ApiResponses(value= {@ApiResponse(code = 200 , message =" SUCCESS OPERATION ")})
+			@ResponseStatus(HttpStatus.OK) 			
+			@GetMapping(value="/getclientbyid/{id}")
+			public H2ClientDao getClienteById(@PathVariable("id") Long id);
 
 		@ApiOperation(value=" ",  notes="THIS OPERATION WILL RETURN ALL THE PRODUCTS IN H2 PERISTENCE DB", response = Product.class )
 		@ApiResponses(value= {@ApiResponse(code = 200 , message =" SUCCESS OPERATION ")})
@@ -59,4 +82,6 @@ public interface H2Controller {
 			@ResponseStatus(HttpStatus.CREATED) 			
 			@PostMapping(value="/createclientwithentitymanager" )
 			public ResponseEntity<String> createClientWithEntityManager(@RequestBody Client client );
+		
+		
 }

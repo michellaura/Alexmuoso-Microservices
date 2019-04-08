@@ -11,10 +11,17 @@ import com.microservices.app.h2.model.daos.ProductDao;
 public interface Repository {
 
 	public List<H2ClientDao> getAllClients();
-
+	
+	public H2ClientDao getClientById(Long id);
+	
+	public void deleteClientById(Long id);
+	
+	public H2ClientDao updateClient(H2ClientDao clienDao);
+	
 	public List<ProductDao> getAllProducts() ;
 	
 	public List<ProductDao> getAllProductByDate(String dateFrom) ;
 
 	public void createClientByEntityManager(H2ClientDao clientDao) ;
+
 }

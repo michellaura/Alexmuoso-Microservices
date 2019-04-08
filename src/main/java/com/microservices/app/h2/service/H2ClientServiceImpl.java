@@ -13,11 +13,9 @@ import com.microservices.app.h2.model.daos.ProductDao;
 import com.microservices.app.h2.model.domain.Client;
 import com.microservices.app.h2.model.domain.Product;
 import com.microservices.app.h2.repository.Repository;
-import com.microservices.app.h2.repository.RepositoryImpl;
 
 import lombok.extern.slf4j.Slf4j;
 import ma.glasnost.orika.MapperFacade;
-import net.bytebuddy.utility.RandomString;
 
 @Slf4j
 @Component
@@ -43,6 +41,34 @@ public class H2ClientServiceImpl implements H2ClientService {
 		log.info(":: GET getAllClients SERVICE :: RETURN RESPONSE  {}", response);
 		return response;
 	}
+	
+	@Override
+	@Transactional(readOnly = true)
+	public H2ClientDao getClientById(Long id) {
+		H2ClientDao cliet=repo.getClientById(id);
+		H2ClientDao clientDao=new H2ClientDao();
+		clientDao.setName(cliet.getName());
+		clientDao.setLastName(cliet.getLastName());
+		clientDao.setAge(cliet.getAge());
+		clientDao.setGender(cliet.getGender());
+		clientDao.setId(cliet.getId());
+		
+		return clientDao;
+	}
+	
+	@Override
+	@Transactional(readOnly = true)
+	public void deleteClientById(Long id) {
+		log.info(":: DELETE  deleteClientById  Service  ::  RESPONSE {}", id);
+		repo.deleteClientById(id);
+	}
+	
+	@Override
+	public H2ClientDao updateClient(H2ClientDao clienDao) {
+		log.info("::updateClient :  service ");
+		return repo.updateClient(clienDao);
+	}
+	
 
 
 	@Override
@@ -98,5 +124,10 @@ public class H2ClientServiceImpl implements H2ClientService {
 		repo.createClientByEntityManager(clientDao);
 
 	}
+
+
+
+
+
 	
 }

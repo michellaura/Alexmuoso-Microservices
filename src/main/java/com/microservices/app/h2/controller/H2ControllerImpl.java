@@ -10,8 +10,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import com.microservices.app.h2.exceptions.helpers.DateHelper;
+import com.microservices.app.h2.model.daos.H2ClientDao;
 import com.microservices.app.h2.model.domain.Client;
 import com.microservices.app.h2.model.domain.Product;
+import com.microservices.app.h2.repository.Jpa;
 import com.microservices.app.h2.service.H2ClientService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -19,6 +21,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Component
 public class H2ControllerImpl implements H2Controller{
+	
+	@Autowired
+	private Jpa jpa;
 	
 	@Autowired
 	private H2ClientService service;
@@ -29,7 +34,29 @@ public class H2ControllerImpl implements H2Controller{
 		log.info(":: GET CONTROLLER :  getAllClients : RUNNING :::");
 		return service.getAllClients();
 	}
-
+	
+	@Override
+	public H2ClientDao getClienteById(Long id) {
+		log.info(":: GET CONTROLLER :  getClient : RUNNING :::");
+		H2ClientDao usdao= new H2ClientDao();
+		usdao=service.getClientById(id);
+		log.info(":: GET CONTROLLER :  getClient :usdao "+ usdao);
+		return usdao;
+	}
+	
+	@Override
+	public void deleteClientById(Long id) {
+		log.info("::DELETEBYID :  CONTROLLER :id "+ id);
+		service.deleteClientById(id);
+		//jpa.deleteById(id);
+	}
+	
+	@Override
+	public H2ClientDao updateClient(H2ClientDao clientDao) {
+		log.info("::updateClient :  CONTROLLER ");
+		return service.updateClient(clientDao);
+	}
+	
 	@Override
 	public String helloTest() {
 		return"Hello";
@@ -64,6 +91,8 @@ public class H2ControllerImpl implements H2Controller{
 		log.info(":: POST  CONTROLLER :  createClientWithEntityManager : SUCCESS : {}" ,  client);
 		return new ResponseEntity<>(" Cliente CREATED   : client ",HttpStatus.CREATED);
 	}
+
+
 	
 
 }
