@@ -41,8 +41,8 @@ public interface MongoController {
 	
 	@ApiOperation(value=" ",  notes="THIS OPERATION WILL RETURN ALL CLIENTS BY NAME", response = Client.class )
 	@ApiResponses(value= {@ApiResponse(code = 200 , message =" SUCCESS OPERATION ")})
-	//*** Swagger - Documentation ****
-		@GetMapping(value="/getallclientswithname")
+
+		@GetMapping(value="/getclientbyname")
 		@ResponseStatus(HttpStatus.OK) 			
 		public ResponseEntity<Object> getAllClientsWithName(String name) ;
 	
