@@ -4,13 +4,17 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.microservices.app.h2.model.daos.H2ClientDao;
 import com.microservices.app.h2.model.domain.Client;
 import com.microservices.app.h2.model.domain.Product;
 
@@ -59,4 +63,27 @@ public interface H2Controller {
 			@ResponseStatus(HttpStatus.CREATED) 			
 			@PostMapping(value="/createclientwithentitymanager" )
 			public ResponseEntity<String> createClientWithEntityManager(@RequestBody Client client );
+		
+		@ApiOperation(value=" ", notes="THIS OPERATION WILL RETURN A CLIENT IN H2 DATA BASE")
+		@ApiResponses(value= {@ApiResponse(code = 200, message =" SUCCESS OPERATION ")})
+			@ResponseStatus(HttpStatus.OK)
+			@GetMapping(value= "/client/{id}")
+			public ResponseEntity<H2ClientDao> findById(@PathVariable("id") long id);
+		
+		@ApiOperation(value=" ", notes="THIS OPERATION WILL DELETE A CLIENT IN H2 DATA BASE")
+		@ApiResponses(value= {@ApiResponse(code = 200, message =" SUCCESS OPERATION ")})
+			@ResponseStatus(HttpStatus.OK)
+			@DeleteMapping(value = "/deleteclient/{id}")
+			public ResponseEntity<String> deleteClient(@PathVariable("id") long id);
+		
+		@ApiOperation(value=" ", notes="THIS OPERATION WILL UPDATE A CLIENT IN H2 DATA BASE")
+		@ApiResponses(value= {@ApiResponse(code = 200, message =" SUCCESS OPERATION ")})
+			@ResponseStatus(HttpStatus.OK)
+			@PutMapping(value = "/updateclient/{id}")
+			public ResponseEntity<String> updateClient(@PathVariable("id") long id, @RequestBody Client client);
 }
+
+//@GetMapping(value = "/{id}")
+//public Foo findById(@PathVariable("id") Long id) {
+//    return RestPreconditions.checkFound(service.findById(id));
+//}

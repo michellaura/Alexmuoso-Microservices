@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import com.microservices.app.h2.exceptions.helpers.DateHelper;
+import com.microservices.app.h2.model.daos.H2ClientDao;
 import com.microservices.app.h2.model.domain.Client;
 import com.microservices.app.h2.model.domain.Product;
 import com.microservices.app.h2.service.H2ClientService;
@@ -24,7 +25,8 @@ public class H2ControllerImpl implements H2Controller{
 	@Autowired
 	private H2ClientService service;
 	@Autowired 
-	private DateHelper dateHelper ;
+	private DateHelper dateHelper;
+	
 	@Override
 	public List<Client> getAllClients() {
 		log.info(":: GET CONTROLLER :  getAllClients : RUNNING :::");
@@ -64,7 +66,32 @@ public class H2ControllerImpl implements H2Controller{
 		service.createClientByEntityManager(client);
 		log.info(":: POST  CONTROLLER :  createClientWithEntityManager : SUCCESS : {}" ,  client);
 		return new ResponseEntity<>(" Cliente CREATED   : client ",HttpStatus.CREATED);
+		}
+	
+	@Override
+	public ResponseEntity<H2ClientDao> findById(long id){
+		log.info("ID USER: [ "+ id+" ]");
+        H2ClientDao client = service.getById(id);
+              return ResponseEntity.ok().body(client);
+	}
+
+	@Override
+	public ResponseEntity<String> deleteClient(long id) {
+		service.deleteById(id);
+		return new ResponseEntity<>(" Cliente DELETED   : client ",HttpStatus.OK);
 	}
 	
+	@Override
+	public ResponseEntity<String> updateClient(long id, Client client){
+		log.info("ID USER: [ "+ id+" ]");
+		H2ClientDao client1 = service.updateClient(id, client);
+		return new ResponseEntity<>(" Cliente UPDATED   : client ",HttpStatus.OK);
+	}
+
+//	@Override
+//	public ResponseEntity<H2ClientDao> findById(long id){
+//        H2ClientDao client = service.getById(id);
+//              return ResponseEntity.ok().body(client);
+//	}
 
 }
