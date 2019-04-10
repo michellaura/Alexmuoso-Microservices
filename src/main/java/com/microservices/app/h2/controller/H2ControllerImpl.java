@@ -1,5 +1,4 @@
 package com.microservices.app.h2.controller;
-//hola mundo22
 
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
@@ -70,7 +69,7 @@ public class H2ControllerImpl implements H2Controller{
 	
 	@Override
 	public ResponseEntity<H2ClientDao> findById(long id){
-		log.info("ID USER: [ "+ id+" ]");
+		log.info(":: GET findById ID USER: [ "+ id+" ]");
         H2ClientDao client = service.getById(id);
               return ResponseEntity.ok().body(client);
 	}
@@ -78,20 +77,16 @@ public class H2ControllerImpl implements H2Controller{
 	@Override
 	public ResponseEntity<String> deleteClient(long id) {
 		service.deleteById(id);
-		return new ResponseEntity<>(" Cliente DELETED   : client ",HttpStatus.OK);
+		return new ResponseEntity<>(":: DELETED deleteClient    : client ",HttpStatus.OK);
 	}
 	
 	@Override
 	public ResponseEntity<String> updateClient(long id, Client client){
-		log.info("ID USER: [ "+ id+" ]");
-		H2ClientDao client1 = service.updateClient(id, client);
+		log.info(":: PUT ID USER: [ "+ id+" ]");
+		H2ClientDao response = service.updateClient(id, client);
+	    log.info(":: PUT updateClient Finished client {}" , response);
 		return new ResponseEntity<>(" Cliente UPDATED   : client ",HttpStatus.OK);
 	}
 
-//	@Override
-//	public ResponseEntity<H2ClientDao> findById(long id){
-//        H2ClientDao client = service.getById(id);
-//              return ResponseEntity.ok().body(client);
-//	}
 
 }

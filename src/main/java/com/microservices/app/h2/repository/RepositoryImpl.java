@@ -1,15 +1,12 @@
 package com.microservices.app.h2.repository;
 
 import java.util.List;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.microservices.app.h2.model.daos.H2ClientDao;
 import com.microservices.app.h2.model.daos.ProductDao;
-import com.microservices.app.h2.model.domain.Client;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -26,7 +23,7 @@ public class RepositoryImpl implements Repository {
 	@Autowired
 	private ProductRepository productRepo;
 	
-	private EntityManagerFactory emf  =  Persistence.createEntityManagerFactory("PERSISTENCE");
+//	private EntityManagerFactory emf  =  Persistence.createEntityManagerFactory("PERSISTENCE");
 	
 	@Override
 	public List<H2ClientDao> getAllClients() {

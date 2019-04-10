@@ -1,11 +1,9 @@
 package com.microservices.app.h2.service;
 
-import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,13 +12,10 @@ import com.microservices.app.h2.model.daos.H2ClientDao;
 import com.microservices.app.h2.model.daos.ProductDao;
 import com.microservices.app.h2.model.domain.Client;
 import com.microservices.app.h2.model.domain.Product;
-import com.microservices.app.h2.repository.H2ClientRepository;
 import com.microservices.app.h2.repository.Repository;
-import com.microservices.app.h2.repository.RepositoryImpl;
 
 import lombok.extern.slf4j.Slf4j;
 import ma.glasnost.orika.MapperFacade;
-import net.bytebuddy.utility.RandomString;
 
 @Slf4j
 @Component
