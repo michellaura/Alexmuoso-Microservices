@@ -1,4 +1,4 @@
-package com.microservices.app.example;
+package com.microservices.app.dummy;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
